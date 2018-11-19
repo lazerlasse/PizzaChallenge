@@ -4,13 +4,24 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
+
 /* Divs */
-#Wrapper{
 
+#NavigationBar {
+    background-color: #FFD82B;
+        width: 70%;
+        margin-left: 15%;
+}
+
+#Wrapper {
     height: 80%;
-    background-color: blue;
-    
+    background-color: lightblue;
+}
 
+#Logo {
+    float: left;
+    width: 10%;
+    height: 10%;
 }
 
 /* QR code generator */
@@ -42,4 +53,9 @@ body {
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
+}
+.testen{
+    min-height:20%;
+    height: 30%;
+    width: auto;
 }
