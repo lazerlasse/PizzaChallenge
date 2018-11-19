@@ -4,6 +4,27 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
+/* Divs */
+#Wrapper{
+
+    height: 80%;
+    background-color: blue;
+    
+
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -21,17 +42,4 @@ body {
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
-}
-
-/* QR code generator */
-#qrCode {
-    margin: 15px;
-}
-
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
 }
