@@ -21,8 +21,14 @@ namespace PizzaChallenge.Controllers
 
 			return View();
 		}
+        public IActionResult Menu()
+        {
+            ViewData["Message"] = "Menucard.";
 
-		public IActionResult Contact()
+            return View();
+        }
+
+        public IActionResult Contact()
 		{
 			ViewData["Message"] = "Your contact page.";
 
