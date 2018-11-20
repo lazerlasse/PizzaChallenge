@@ -1,16 +1,17 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-top: 50px;
+    padding-bottom: 20px;*/
+    background-color: #E3E3F2;
 }
 
 /* Divs */
 
 #NavigationBar {
-    background-color: #FFD82B;
-        width: 70%;
-        margin-left: 15%;
+    background-color: #D7263D;
+    /*width: 70%;
+    margin-left: 15%;*/
 }
 
 #Wrapper {
@@ -18,12 +19,28 @@ body {
     background-color: #E3E3F2;
 }
 
-#Logo {
+#Logobox {
     float: left;
-    width: 10%;
-    height: 10%;
+    /*width: 5%;
+    height: 5%;*/
+   
+}
+#Logo {
+    
+    /*width: 5%;
+    height: 5%;*/
+    object-fit: contain;
+}
+#Rightside{
+   
+    position:fixed;
+    background-color:blue;
 }
 
+#myCarousel{
+    width: auto;
+    height: 30%;
+}
 /* QR code generator */
 #qrCode {
     margin: 15px;
@@ -60,7 +77,13 @@ body {
     width: auto;
 }
 /*.Indexpic {
-/*object-fit:scale-down;*/
+object-fit:scale-down;
 width:80%;
 height:auto;
+}*/
+/*.img-responsive{
+    width: auto;
+    max-height: 40%;
+    object-fit:scale-down;
+  
 }*/
