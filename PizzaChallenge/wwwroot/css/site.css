@@ -59,7 +59,8 @@ body {
     height: 30%;
     width: auto;
 }
-.Indexpic {
-    height: 3%;
-    width: 2%;
-}
+/*.Indexpic {
+/*object-fit:scale-down;*/
+width:80%;
+height:auto;
+}*/
