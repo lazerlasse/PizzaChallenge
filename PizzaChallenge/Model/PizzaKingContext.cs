@@ -32,9 +32,11 @@ namespace PizzaChallenge.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
+#pragma warning disable CS1030 // #warning directive
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=pizzachallenge.database.windows.net;Initial Catalog=PizzaKing;User ID=PizzaKing;Password=4Ndet0wn;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            }
+				optionsBuilder.UseSqlServer("Data Source=pizzachallenge.database.windows.net;Initial Catalog=PizzaKing;User ID=PizzaKing;Password=4Ndet0wn;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+#pragma warning restore CS1030 // #warning directive
+			}
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
