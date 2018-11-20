@@ -11,11 +11,4 @@
     <PackageReference Include="MySql.Data" Version="8.0.13" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Backend\Controllers\" />
-    <Folder Include="Areas\Backend\Data\" />
-    <Folder Include="Areas\Backend\Models\" />
-    <Folder Include="Areas\Backend\Views\" />
-  </ItemGroup>
-
 </Project>
