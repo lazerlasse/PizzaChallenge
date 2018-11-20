@@ -10,8 +10,6 @@ body {
 
 #NavigationBar {
     background-color: #D7263D;
-    /*width: 70%;
-    margin-left: 15%;*/
 }
 
 #Wrapper {
@@ -19,28 +17,24 @@ body {
     background-color: #E3E3F2;
 }
 
-#Logobox {
+/*#Logobox {
     float: left;
-    /*width: 5%;
-    height: 5%;*/
    
-}
-#Logo {
-    
-    /*width: 5%;
-    height: 5%;*/
-    object-fit: contain;
+}*/
+.Logo {
+    width: 15%;
+    height: auto;
+
 }
 #Rightside{
    
+    float: left;
     position:fixed;
-    background-color:blue;
+    
+
 }
 
-#myCarousel{
-    width: auto;
-    height: 30%;
-}
+
 /* QR code generator */
 #qrCode {
     margin: 15px;
@@ -76,14 +70,11 @@ body {
     height: 30%;
     width: auto;
 }
-/*.Indexpic {
-object-fit:scale-down;
-width:80%;
-height:auto;
-}*/
-/*.img-responsive{
-    width: auto;
-    max-height: 40%;
-    object-fit:scale-down;
+
+.img-responsive{
+    width: 70%;
+    height: auto;
+    margin-left:15%;
+    /*object-fit:none;*/
   
-}*/
+}
