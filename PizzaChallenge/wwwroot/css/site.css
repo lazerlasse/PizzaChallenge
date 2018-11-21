@@ -24,15 +24,24 @@ body {
 .Logo {
     width: 15%;
     height: auto;
-
 }
-#Rightside{
-   
+
+#Rightside {
     /*float: left;
     position:fixed;*/
-    
-
 }
+
+#Contact_block
+{
+margin: 0;
+padding: 0;
+min-height: 150px;
+}
+/*
+#firstrow {
+    /*min-width: 20%;
+    margin-left: 20%;
+}*/
 
 
 /* QR code generator */
@@ -65,16 +74,22 @@ body {
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
 }
-.testen{
-    min-height:20%;
+
+.testen {
+    min-height: 20%;
     height: 30%;
     width: auto;
 }
 
-.img-responsive{
+.img-responsive {
     width: 70%;
     height: auto;
-    margin-left:15%;
+    margin-left: 15%;
     /*object-fit:none;*/
-  
 }
+
+/*.spacer {
+    margin: 0;
+    padding: 0;
+    min-height: 20%;
+}*/
