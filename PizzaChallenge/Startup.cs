@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using PizzaChallenge.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PizzaChallenge.Model;
 
 namespace PizzaChallenge
 {
@@ -34,11 +35,11 @@ namespace PizzaChallenge
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
-			services.AddDbContext<ApplicationDbContext>(options =>
+			services.AddDbContext<PizzaKingContext>(options =>
 				options.UseSqlServer(
 					Configuration.GetConnectionString("DefaultConnection")));
 			services.AddDefaultIdentity<IdentityUser>()
-				.AddEntityFrameworkStores<ApplicationDbContext>();
+				.AddEntityFrameworkStores<PizzaKingContext>();
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 		}
