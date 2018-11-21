@@ -1,17 +1,18 @@
-﻿@model PizzaChallenge.Model.Ingredient
+﻿@model PizzaChallenge.Model.Product
 
 @{
-    ViewData["Title"] = "Create Ingredient";
+    ViewData["Title"] = "EditProduct";
 }
 
-<h2>Opret ny ingrediens</h2>
+<h2>EditProduct</h2>
 
-<h4>Ingrediens</h4>
+<h4>Product</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateIngredient">
+        <form asp-action="EditProduct">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Pid" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -23,16 +24,18 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Opret" class="btn btn-default" />
+                <label asp-for="TypeFk" class="control-label"></label>
+                <input asp-for="TypeFk" class="form-control" />
+                <span asp-validation-for="TypeFk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Gem" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Kontrolpanel</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
