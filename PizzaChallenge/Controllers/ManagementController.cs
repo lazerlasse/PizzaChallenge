@@ -10,8 +10,8 @@ using Type = PizzaChallenge.Model.Type;
 
 namespace PizzaChallenge.Controllers
 {
-    public class ManagementController : Controller
-    {
+	public class ManagementController : Controller
+	{
 		private PizzaKingContext db = new PizzaKingContext();
 
 		[BindProperty]
@@ -29,44 +29,62 @@ namespace PizzaChallenge.Controllers
 		[BindProperty]
 		public IList<Ingredient> IngredientsList { get; private set; }
 
-        // GET: Management
-        public async Task<IActionResult> Index()
-        {
+		// GET: Management/Index
+		public async Task<IActionResult> Index()
+		{
 			ProductsList = await db.Product.AsNoTracking().ToListAsync();
 
 			return View(ProductsList);
-        }
+		}
 
-        // GET: Management/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+		// GET: Management/Details/5
+		public ActionResult Details(int id)
+		{
+			return View();
+		}
+
+		// GET: Management/CreateIngredient
+		[HttpGet]
+		[ActionName("CreateIngredient")]
+		public IActionResult CreateIngredientGet()
+		{
+			return View();
+		}
 
 		// POST: Management/CreateIngredient
 		[HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateIngredient()
-        {
-            try
-            {
+		[ValidateAntiForgeryToken]
+		[ActionName("CreateIngredient")]
+		public async Task<IActionResult> CreateIngredientPost()
+		{
+			try
+			{
 				if (!ModelState.IsValid) return View();
 
 				db.Ingredient.Add(Ingredient);
 				await db.SaveChangesAsync();
 
 				return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+			}
+			catch
+			{
+				return View();
+			}
+		}
+
+		// GET: Management/CreateProduct
+		[HttpGet]
+		[ActionName("CreateProduct")]
+		public IActionResult CreateProductGet()
+		{
+			return View();
+		}
 
 		// POST: Management/CreateProduct
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> CreateProduct()
+		[ActionName("CreateProduct")]
+		public async Task<IActionResult> CreateProductPost()
 		{
 			try
 			{
@@ -83,50 +101,67 @@ namespace PizzaChallenge.Controllers
 			}
 		}
 
-        // GET: Management/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+		// GET: Management/Edit/5
+		[HttpGet]
+		[ActionName("EditProduct")]
+		public async Task<IActionResult> EditProductGet(int id)
+		{
+			Product = await db.Product.FindAsync(id);
+			if (Product == null)
+			{
+				return RedirectToAction(nameof(Index));
+			}
 
-        // POST: Management/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+			return View(Product);
+		}
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+		// POST: Management/Edit/5
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[ActionName("EditProduct")]
+		public async Task<IActionResult> EditProductPost()
+		{
+			if (!ModelState.IsValid)
+			{
+				return View();
+			}
 
-        // GET: Management/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+			db.Attach(Product).State = EntityState.Modified;
 
-        // POST: Management/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+			try
+			{
+				await db.SaveChangesAsync();
+			}
+			catch (DbUpdateConcurrencyException ex)
+			{
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+				throw new Exception($"Customer {Product.Name} Not Found", ex);
+			}
+
+			return RedirectToAction(nameof(Index));
+		}
+
+		// GET: Management/Delete/5
+		public ActionResult Delete(int id)
+		{
+			return View();
+		}
+
+		// POST: Management/Delete/5
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Delete(int id, IFormCollection collection)
+		{
+			try
+			{
+				// TODO: Add delete logic here
+
+				return RedirectToAction(nameof(Index));
+			}
+			catch
+			{
+				return View();
+			}
+		}
+	}
 }
