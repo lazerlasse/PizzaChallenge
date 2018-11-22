@@ -1,0 +1,29 @@
+﻿@model PizzaChallenge.Model.Category
+
+@{
+    ViewData["Title"] = "CreateCategory";
+}
+
+<h2>Opret ny produkt kategori:</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateCategory">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Navn</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Opret" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Fortryd</a>
+</div>
+

@@ -1,0 +1,31 @@
+﻿@model PizzaChallenge.Model.Ingredient
+
+@{
+    ViewData["Title"] = "DeleteIngredient";
+}
+
+<h2>Slet tilbehør</h2>
+
+<h3>Er du sikker på du vil slette dette tilbehør?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Navn
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Pris
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteIngredient">
+        <input type="hidden" asp-for="IngredientId" />
+        <input type="submit" value="Slet" class="btn btn-default" /> |
+        <a asp-action="Ingredients">Fortryd</a>
+    </form>
+</div>

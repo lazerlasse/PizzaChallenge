@@ -1,0 +1,40 @@
+﻿@model PizzaChallenge.Model.Product
+
+@{
+    ViewData["Title"] = "Produkt Detaljer";
+}
+
+<h2>Produkt Detaljer:</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Navn
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Beskrivelse
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            Pris
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            Tilbehør
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ingredients)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditProduct" asp-route-id="@Model.ProductId">Rediger</a> |
+    <a asp-action="Index">Tilbage</a>
+</div>

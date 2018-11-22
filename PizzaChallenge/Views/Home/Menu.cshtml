@@ -1,40 +1,46 @@
-﻿
+﻿@model IEnumerable<PizzaChallenge.Model.Product>
+
 @{
     ViewData["Title"] = "Menukort";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2 class="display-2">@ViewData["Title"]</h2>
 <h2>Menukort</h2>
 @*<img src="~/images/PizzaLogo.jpg" />*@
 
-<table id="Menutable" class="table table-responsive table-danger  ">
+<hr />
+<table id="Menutable" class="table table-responsive table-danger">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th>
+                Nr
+            </th>
+            <th>
+                Navn
+            </th>
+            <th>
+                Beskrivelse
+            </th>
+            <th>
+                Pris DKK
+            </th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>twitter</td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

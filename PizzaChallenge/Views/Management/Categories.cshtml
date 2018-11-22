@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PizzaChallenge.Model.Category>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h2>Kategori Administration</h2>
+
+<hr />
+<p>
+    <a asp-action="CreateCategory">Opret ny kategori</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Navn
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-action="EditCategory" asp-route-id="@item.CatId">Rediger</a> |
+                <a asp-action="DeleteCategory" asp-route-id="@item.CatId">Slet</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

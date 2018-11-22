@@ -20,7 +20,7 @@ namespace PizzaChallenge.Controllers
 		public Product Product { get; set; }
 
 		[BindProperty]
-		public Type Type { get; set; }
+		public Category Category { get; set; }
 
 		[BindProperty]
 		public IList<Product> ProductsList { get; private set; }
@@ -28,7 +28,11 @@ namespace PizzaChallenge.Controllers
 		[BindProperty]
 		public IList<Ingredient> IngredientsList { get; private set; }
 
-		// GET: Management/Index
+		[BindProperty]
+		public IList<Category> CategoriesList { get; private set; }
+
+		// GET: Management/Index - Product list.
+		[HttpGet]
 		public async Task<IActionResult> Index()
 		{
 			ProductsList = await db.Product.AsNoTracking().ToListAsync();
@@ -36,39 +40,17 @@ namespace PizzaChallenge.Controllers
 			return View(ProductsList);
 		}
 
-		// GET: Management/Details/5
-		public ActionResult Details(int id)
-		{
-			return View();
-		}
-
-		// GET: Management/CreateIngredient
+		// GET: Management/ProductDetails/5
 		[HttpGet]
-		[ActionName("CreateIngredient")]
-		public IActionResult CreateIngredientGet()
+		public async Task<IActionResult> ProductDetails(int id)
 		{
-			return View();
-		}
-
-		// POST: Management/CreateIngredient
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		[ActionName("CreateIngredient")]
-		public async Task<IActionResult> CreateIngredientPost()
-		{
-			try
+			Product = await db.Product.FindAsync(id);
+			if (Product == null)
 			{
-				if (!ModelState.IsValid) return View();
-
-				db.Ingredient.Add(Ingredient);
-				await db.SaveChangesAsync();
-
 				return RedirectToAction(nameof(Index));
 			}
-			catch
-			{
-				return View();
-			}
+
+			return View(Product);
 		}
 
 		// GET: Management/CreateProduct
@@ -170,6 +152,153 @@ namespace PizzaChallenge.Controllers
 			await db.SaveChangesAsync();
 
 			return RedirectToAction(nameof(Index));
+		}
+
+		//**************************************************************//
+		//******************* Ingredient Section ***********************//
+		//**************************************************************//
+
+		// GET: Management/Ingredients - Ingredient Index
+		[HttpGet]
+		public async Task<IActionResult> Ingredients()
+		{
+			IngredientsList = await db.Ingredient.AsNoTracking().ToListAsync();
+
+			return View(IngredientsList);
+		}
+		
+		// GET: Management/CreateIngredient
+		[HttpGet]
+		[ActionName("CreateIngredient")]
+		public IActionResult CreateIngredientGet()
+		{
+			return View();
+		}
+
+		// POST: Management/CreateIngredient
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[ActionName("CreateIngredient")]
+		public async Task<IActionResult> CreateIngredientPost()
+		{
+			try
+			{
+				if (!ModelState.IsValid) return View();
+
+				db.Ingredient.Add(Ingredient);
+				await db.SaveChangesAsync();
+
+				return RedirectToAction(nameof(Index));
+			}
+			catch
+			{
+				return View();
+			}
+		}
+
+		// Get: Management/DeleteIngredient/5
+		[HttpGet]
+		public async Task<IActionResult> DeleteIngredient(int id)
+		{
+			Ingredient ingredient = await db.Ingredient.FindAsync(id);
+
+			if (ingredient == null)
+			{
+				return View("NotFound");
+			}
+			else
+			{
+				return View(ingredient);
+			}
+		}
+
+		// POST: Management/DeleteIngredient/5
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteIngredient(int id, string confirmButton)
+		{
+			Ingredient ingredient = await db.Ingredient.FindAsync(id);
+
+			if (ingredient == null)
+				return View("NotFound");
+
+			db.Ingredient.Remove(ingredient);
+			await db.SaveChangesAsync();
+
+			return RedirectToAction(nameof(Ingredients));
+		}
+
+		//**************************************************************//
+		//********************* Category Section ***********************//
+		//**************************************************************//
+
+		// GET: Management/Categories - Category Index.
+		[HttpGet]
+		public async Task<IActionResult> Categories()
+		{
+			CategoriesList = await db.Category.AsNoTracking().ToListAsync();
+
+			return View(CategoriesList);
+		}
+
+		// GET: Management/CreateCategory
+		[HttpGet]
+		[ActionName("CreateCategory")]
+		public IActionResult CreateCategoryGet()
+		{
+			return View();
+		}
+
+		// POST: Management/CreateCategory
+		[HttpPost]
+		[ActionName("CreateCategory")]
+		public async Task<IActionResult> CreateCategoryPost()
+		{
+			try
+			{
+				if (!ModelState.IsValid) return View();
+
+				db.Category.Add(Category);
+				await db.SaveChangesAsync();
+
+				return RedirectToAction(nameof(Categories));
+			}
+			catch
+			{
+				return View();
+			}
+		}
+
+		// Get: Management/DeleteCategory/5
+		[HttpGet]
+		public async Task<IActionResult> DeleteCategory(int id)
+		{
+			Category category = await db.Category.FindAsync(id);
+
+			if (category == null)
+			{
+				return View("NotFound");
+			}
+			else
+			{
+				return View(category);
+			}
+		}
+
+		// POST: Management/DeleteCategory/5
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteCategory(int id, string confirmButton)
+		{
+			Category category = await db.Category.FindAsync(id);
+
+			if (category == null)
+				return View("NotFound");
+
+			db.Category.Remove(category);
+			await db.SaveChangesAsync();
+
+			return RedirectToAction(nameof(Categories));
 		}
 	}
 }

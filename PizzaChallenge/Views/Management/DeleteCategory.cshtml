@@ -1,0 +1,25 @@
+﻿@model PizzaChallenge.Model.Category
+
+@{
+    ViewData["Title"] = "Slet Kategori";
+}
+
+<h2>Slet Kategori</h2>
+
+<h3>Er du sikker på du vil slette denne kategori?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Navn
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteCategory">
+        <input type="hidden" asp-for="CatId" />
+        <input type="submit" value="Slet" class="btn btn-default" /> |
+        <a asp-action="Categories">Fortryd</a>
+    </form>
+</div>

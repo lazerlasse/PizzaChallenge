@@ -3,32 +3,37 @@
 @{
     ViewData["Title"] = "Pizza King Kontrolpanel";
 }
-<h1>Pizza King Kontrolpanel</h1>
+<h2>Produkt Administration:</h2>
 
 <p>
-    <a asp-action="Create">Opret nyt produkt</a>
+    <a asp-action="CreateProduct">Opret nyt produkt</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Nr
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Navn
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Beskrivelse
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ingredients)
+                Pris
             </th>
-            <th></th>
+            <th>
+                Tilbehør
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
