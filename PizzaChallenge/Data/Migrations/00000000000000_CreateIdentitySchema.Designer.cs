@@ -6,10 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using PizzaChallenge.Model;
 
 namespace PizzaChallenge.Data.Migrations
 {
-	[DbContext(typeof(ApplicationDbContext))]
+	[DbContext(typeof(PizzaKingContext))]
 	[Migration("00000000000000_CreateIdentitySchema")]
 	partial class CreateIdentitySchema
 	{

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 namespace PizzaChallenge.Model
 {
-    public partial class Ingredient
+    public partial class Category
     {
-        public int IngredientId { get; set; }
+        public int CatId { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
     }
 }

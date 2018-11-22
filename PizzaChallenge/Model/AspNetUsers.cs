@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PizzaChallenge.Model
 {
@@ -16,13 +14,9 @@ namespace PizzaChallenge.Model
         }
 
         public string Id { get; set; }
-        [StringLength(256)]
         public string UserName { get; set; }
-        [StringLength(256)]
         public string NormalizedUserName { get; set; }
-        [StringLength(256)]
         public string Email { get; set; }
-        [StringLength(256)]
         public string NormalizedEmail { get; set; }
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
@@ -35,13 +29,9 @@ namespace PizzaChallenge.Model
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
 
-        [InverseProperty("User")]
         public ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
-        [InverseProperty("User")]
         public ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
-        [InverseProperty("User")]
         public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
-        [InverseProperty("User")]
         public ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
     }
 }

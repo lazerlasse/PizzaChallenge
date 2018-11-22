@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PizzaChallenge.Model;
-using Type = PizzaChallenge.Model.Type;
 
 namespace PizzaChallenge.Controllers
 {
