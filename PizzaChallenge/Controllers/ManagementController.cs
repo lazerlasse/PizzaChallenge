@@ -101,7 +101,7 @@ namespace PizzaChallenge.Controllers
 			}
 		}
 
-		// GET: Management/Edit/5
+		// GET: Management/EditProduct/5
 		[HttpGet]
 		[ActionName("EditProduct")]
 		public async Task<IActionResult> EditProductGet(int id)
@@ -115,7 +115,7 @@ namespace PizzaChallenge.Controllers
 			return View(Product);
 		}
 
-		// POST: Management/Edit/5
+		// POST: Management/EditProduct/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[ActionName("EditProduct")]
@@ -141,27 +141,36 @@ namespace PizzaChallenge.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-		// GET: Management/Delete/5
-		public ActionResult Delete(int id)
+		// Get: Management/DeleteProduct/5
+		[HttpGet]
+		public async Task<IActionResult> DeleteProduct(int id)
 		{
-			return View();
+			Product product = await db.Product.FindAsync(id);
+
+			if (product == null)
+			{
+				return View("NotFound");
+			}
+			else
+			{
+				return View(product);
+			}
 		}
 
-		// POST: Management/Delete/5
+		// POST: Management/DeleteProduct/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
+		public async Task<IActionResult> DeleteProduct(int id, string confirmButton)
 		{
-			try
-			{
-				// TODO: Add delete logic here
+			Product product = await db.Product.FindAsync(id);
 
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
+			if (product == null)
+				return View("NotFound");
+
+			db.Product.Remove(product);
+			await db.SaveChangesAsync();
+
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }

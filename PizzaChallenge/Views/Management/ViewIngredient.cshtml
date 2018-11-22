@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PizzaChallenge.Model.Ingredient>
+
+@{
+    ViewData["Title"] = "ViewIngredient";
+}
+
+<h2>Ingrediens Liste</h2>
+
+<p>
+    <a asp-action="Create">Opret ny</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-action="EditIngredient" asp-route-id="@item.IId">Rediger</a> |
+                <a asp-action="IngredientDetails" asp-route-id="@item.IId">Detaljer</a> |
+                <a asp-action="DeleteIngredient" asp-route-id="@item.IId">Slet</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
