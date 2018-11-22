@@ -31,9 +31,9 @@ namespace PizzaChallenge.Controllers
 
         public IActionResult Contact()
 		{
-		
+            ViewData["Message"] = "Kontakt";
 
-			return View();
+            return View();
 		}
 
 		public IActionResult Privacy()
