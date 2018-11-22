@@ -35,11 +35,7 @@ min-height: 150px;
 #Menutable {
     background-color: #FFD82B;
 }
-/*
-#firstrow {
-    /*min-width: 20%;
-    margin-left: 20%;
-}*/
+
 /* QR code generator */
 #qrCode {
     margin: 15px;
@@ -52,7 +48,13 @@ min-height: 150px;
         display: none;
     }
 }
-
+#Rightsideh3 {
+    text-align: center;
+    text-decoration-color: #D7263D;
+    
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:30px;
+}
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -84,8 +86,6 @@ min-height: 150px;
     /*object-fit:none;*/
 }
 
-/*.spacer {
-    margin: 0;
-    padding: 0;
-    min-height: 20%;
-}*/
+.FontMargin {
+    margin: 2%;
+}
