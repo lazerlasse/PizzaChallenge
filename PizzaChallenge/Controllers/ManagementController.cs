@@ -10,158 +10,172 @@ using Type = PizzaChallenge.Model.Type;
 
 namespace PizzaChallenge.Controllers
 {
-	public class ManagementController : Controller
-	{
-		private PizzaKingContext db = new PizzaKingContext();
+    public class ManagementController : Controller
+    {
+        private PizzaKingContext db = new PizzaKingContext();
 
-		[BindProperty]
-		public Ingredient Ingredient { get; set; }
+        [BindProperty]
+        public Ingredient Ingredient { get; set; }
 
-		[BindProperty]
-		public Product Product { get; set; }
+        [BindProperty]
+        public Product Product { get; set; }
 
-		[BindProperty]
-		public Type Type { get; set; }
+        [BindProperty]
+        public Type Type { get; set; }
 
-		[BindProperty]
-		public IList<Product> ProductsList { get; private set; }
+        [BindProperty]
+        public IList<Product> ProductsList { get; private set; }
 
-		[BindProperty]
-		public IList<Ingredient> IngredientsList { get; private set; }
+        [BindProperty]
+        public IList<Ingredient> IngredientsList { get; private set; }
 
-		// GET: Management/Index
-		public async Task<IActionResult> Index()
-		{
-			ProductsList = await db.Product.AsNoTracking().ToListAsync();
+        // GET: Management/Index
+        public async Task<IActionResult> Index()
+        {
+            ProductsList = await db.Product.AsNoTracking().ToListAsync();
 
-			return View(ProductsList);
-		}
+            var Products = db.IngPro.Include(c => c.IngFk)
 
-		// GET: Management/Details/5
-		public ActionResult Details(int id)
-		{
-			return View();
-		}
+            return View(ProductsList);
+        }
 
-		// GET: Management/CreateIngredient
-		[HttpGet]
-		[ActionName("CreateIngredient")]
-		public IActionResult CreateIngredientGet()
-		{
-			return View();
-		}
+        // GET: Management/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
 
-		// POST: Management/CreateIngredient
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		[ActionName("CreateIngredient")]
-		public async Task<IActionResult> CreateIngredientPost()
-		{
-			try
-			{
-				if (!ModelState.IsValid) return View();
+        // GET: Management/CreateIngredient
+        [HttpGet]
+        [ActionName("CreateIngredient")]
+        public IActionResult CreateIngredientGet()
+        {
+            return View();
+        }
 
-				db.Ingredient.Add(Ingredient);
-				await db.SaveChangesAsync();
+        // POST: Management/CreateIngredient
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("CreateIngredient")]
+        public async Task<IActionResult> CreateIngredientPost()
+        {
+            try
+            {
+                if (!ModelState.IsValid) return View();
 
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
+                db.Ingredient.Add(Ingredient);
+                await db.SaveChangesAsync();
 
-		// GET: Management/CreateProduct
-		[HttpGet]
-		[ActionName("CreateProduct")]
-		public IActionResult CreateProductGet()
-		{
-			return View();
-		}
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
-		// POST: Management/CreateProduct
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		[ActionName("CreateProduct")]
-		public async Task<IActionResult> CreateProductPost()
-		{
-			try
-			{
-				if (!ModelState.IsValid) return View();
+        // GET: Management/CreateProduct
+        [HttpGet]
+        [ActionName("CreateProduct")]
+        public IActionResult CreateProductGet()
+        {
+            return View();
+        }
 
-				db.Product.Add(Product);
-				await db.SaveChangesAsync();
+        // POST: Management/CreateProduct
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("CreateProduct")]
+        public async Task<IActionResult> CreateProductPost()
+        {
+            try
+            {
+                if (!ModelState.IsValid) return View();
 
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
+                db.Product.Add(Product);
+                await db.SaveChangesAsync();
 
-		// GET: Management/Edit/5
-		[HttpGet]
-		[ActionName("EditProduct")]
-		public async Task<IActionResult> EditProductGet(int id)
-		{
-			Product = await db.Product.FindAsync(id);
-			if (Product == null)
-			{
-				return RedirectToAction(nameof(Index));
-			}
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
-			return View(Product);
-		}
+        // GET: Management/Edit/5
+        [HttpGet]
+        [ActionName("EditProduct")]
+        public async Task<IActionResult> EditProductGet(int id)
+        {
+            Product = await db.Product.FindAsync(id);
+            if (Product == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
 
-		// POST: Management/Edit/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		[ActionName("EditProduct")]
-		public async Task<IActionResult> EditProductPost()
-		{
-			if (!ModelState.IsValid)
-			{
-				return View();
-			}
+            return View(Product);
+        }
 
-			db.Attach(Product).State = EntityState.Modified;
+        // POST: Management/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("EditProduct")]
+        public async Task<IActionResult> EditProductPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
 
-			try
-			{
-				await db.SaveChangesAsync();
-			}
-			catch (DbUpdateConcurrencyException ex)
-			{
+            db.Attach(Product).State = EntityState.Modified;
 
-				throw new Exception($"Customer {Product.Name} Not Found", ex);
-			}
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
 
-			return RedirectToAction(nameof(Index));
-		}
+                throw new Exception($"Customer {Product.Name} Not Found", ex);
+            }
 
-		// GET: Management/Delete/5
-		public ActionResult Delete(int id)
-		{
-			return View();
-		}
+            return RedirectToAction(nameof(Index));
+        }
 
-		// POST: Management/Delete/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
-		{
-			try
-			{
-				// TODO: Add delete logic here
+        // GET: Management/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
 
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
-	}
+        // POST: Management/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        //public ActionResult Index()
+        //{
+        //    IngPro ip = new IngPro();
+            
+        //    var query = from c in db.Customers
+        //                where c.Country == "UK"
+        //                orderby c.CustomerID
+        //                select c;
+        //    return View(query.ToList());
+        //}
+
+
+    }
 }
