@@ -34,7 +34,7 @@ namespace PizzaChallenge.Controllers
         {
             ProductsList = await db.Product.AsNoTracking().ToListAsync();
 
-            var Products = db.IngPro.Include(c => c.IngFk)
+            var Products = db.IngPro.Include(c => c.IngFk);
 
             return View(ProductsList);
         }
