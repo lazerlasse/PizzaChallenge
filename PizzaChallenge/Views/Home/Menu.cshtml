@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<PizzaChallenge.Model.Product>
 @{
     ViewData["Title"] = "Menukort";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,30 +11,47 @@
 <table id="Menutable" class="table table-responsive table-danger  ">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Nummer </th>
+            <th scope="col">Product</th>
+            <th scope="col">Pris</th>
+
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>twitter</td>
-        </tr>
-    </tbody>
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ingredients)
+                </td>
+                <td>
+            </tr>
+            @*<tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+
+                </tr>*@
+        </tbody>
+    </table>

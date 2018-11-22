@@ -34,8 +34,11 @@ min-height: 150px;
 }
 #Menutable {
     background-color: #FFD82B;
+    /*font-size: 20px;*/
 }
-
+Menutable th{
+    font-size:20px;
+}
 /* QR code generator */
 #qrCode {
     margin: 15px;
