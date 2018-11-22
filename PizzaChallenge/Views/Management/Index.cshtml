@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<PizzaChallenge.Model.Product>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_BackendLayout.cshtml";
+    ViewData["Title"] = "Kontrolpanel";
 }
 
-<h2>Index</h2>
+<h1>Kontrolpanel - Pizza King</h1>
 
 <p>
-    <a asp-controller="Management" asp-action="CreateIngredient">Opret ny ingrediens</a>
-    <a asp-controller="Management" asp-action="CreateProduct">Opret nyt produkt</a>
+    <a asp-action="CreateProduct">Opret nyt product</a>
+    <a asp-action="CreateIngredient">Opret ny ingrediens</a>
 </p>
 <table class="table">
     <thead>
